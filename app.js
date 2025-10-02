@@ -26,7 +26,7 @@ const connectSrcUrls = [
 
 const MongoStore = require('connect-mongo');
 
-const dbUrl = 'mongodb://localhost:27017/yelp-camp-maptiler';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp-maptiler';
 
 // const dbUrl = process.env.DB_URL
 mongoose.connect(dbUrl);   //dbUrl
@@ -49,6 +49,8 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(sanitizeV5({ replaceWith: '_' }));
 
+const secret = process.env.SECRET;
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
@@ -64,7 +66,7 @@ store.on("error", function(e){
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -160,7 +162,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log('Serving on port 3000')
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
 
