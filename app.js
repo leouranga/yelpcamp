@@ -80,7 +80,13 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig))
 app.use(flash());
-app.use(helmet());  //{ contentSecurityPolicy: false}
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+  })
+);
+
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
