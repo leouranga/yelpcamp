@@ -1,5 +1,5 @@
-if (process.env.NODE_ENV !=="production") {
-    require('dotenv').config({ quiet: true});
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config({ quiet: true });
 }
 
 const express = require('express');
@@ -24,6 +24,8 @@ const connectSrcUrls = [
     "https://api.maptiler.com/",
     "https://cdn.maptiler.com/",
     "https://data.maptiler.com/",
+    "https://cdn.jsdelivr.net",
+    "https://stackpath.bootstrapcdn.com/"
 ];
 
 const MongoStore = require('connect-mongo');
@@ -61,7 +63,7 @@ const store = MongoStore.create({
     }
 });
 
-store.on("error", function(e){
+store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e)
 })
 
@@ -81,10 +83,10 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash());
 app.use(
-  helmet({
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy: { policy: "cross-origin" }
-  })
+    helmet({
+        crossOriginEmbedderPolicy: false,
+        crossOriginResourcePolicy: { policy: "cross-origin" }
+    })
 );
 
 
@@ -93,7 +95,6 @@ const scriptSrcUrls = [
     "https://kit.fontawesome.com/",
     "https://cdnjs.cloudflare.com/",
     "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/",
 ];
 const styleSrcUrls = [
     "https://kit-free.fontawesome.com/",
@@ -101,7 +102,6 @@ const styleSrcUrls = [
     "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/",
 ];
 
 const fontSrcUrls = [];
@@ -118,7 +118,7 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
-                "https://res.cloudinary.com/dh9eqivxn/", 
+                "https://res.cloudinary.com/dh9eqivxn/",
                 "https://images.unsplash.com/",
                 "https://api.maptiler.com/",
                 "https://cdn.maptiler.com/",
