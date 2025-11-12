@@ -22,6 +22,8 @@ const reviewRoutes = require('./routes/reviews');
 
 const connectSrcUrls = [
     "https://api.maptiler.com/",
+    "https://cdn.maptiler.com/",
+    "https://data.maptiler.com/",
 ];
 
 const MongoStore = require('connect-mongo');
@@ -113,6 +115,8 @@ app.use(
                 "https://res.cloudinary.com/dh9eqivxn/", 
                 "https://images.unsplash.com/",
                 "https://api.maptiler.com/",
+                "https://cdn.maptiler.com/",
+                "https://data.maptiler.com/",
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
