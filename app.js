@@ -1,5 +1,5 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config({ quiet: true });
+if (process.env.NODE_ENV !=="production") {
+    require('dotenv').config({ quiet: true});
 }
 
 const express = require('express');
@@ -22,7 +22,6 @@ const reviewRoutes = require('./routes/reviews');
 
 const connectSrcUrls = [
     "https://api.maptiler.com/",
-    "https://cdn.maptiler.com/"
 ];
 
 const MongoStore = require('connect-mongo');
@@ -60,7 +59,7 @@ const store = MongoStore.create({
     }
 });
 
-store.on("error", function (e) {
+store.on("error", function(e){
     console.log("SESSION STORE ERROR", e)
 })
 
@@ -111,10 +110,9 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
-                "https://res.cloudinary.com/dh9eqivxn/",
+                "https://res.cloudinary.com/dh9eqivxn/", 
                 "https://images.unsplash.com/",
                 "https://api.maptiler.com/",
-                "https://cdn.maptiler.com/"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
